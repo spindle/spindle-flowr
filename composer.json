@@ -1,0 +1,21 @@
+{
+    "name": "spindle/flowr"
+    ,"description": "flow control & AOP Library"
+    ,"authors": [
+        {
+            "name": "Hiraku NAKANO"
+            ,"email": "hiraku@tojiru.net"
+        }
+    ]
+    ,"license": "CC0-1.0"
+    ,"require": {
+    }
+    ,"require-dev": {
+        "phpunit/phpunit": "*",
+        "apigen/apigen": "*",
+        "pdepend/pdepend": "*"
+    }
+    ,"autoload": {
+        "psr-4": {"Spindle\\Flowr\\": "src/"}
+    }
+}
