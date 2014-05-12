@@ -28,11 +28,11 @@ class OperationStorage extends \SplDoublyLinkedList
     }
 
     function setForward() {
-        $this->setIteratorMode(parent::IT_MODE_FIFO | parent::IT_MODE_KEEP);
+        $this->setIteratorMode(self::IT_MODE_FIFO | self::IT_MODE_KEEP);
     }
 
     function setBack() {
-        $this->setIteratorMode(parent::IT_MODE_LIFO | parent::IT_MODE_KEEP);
+        $this->setIteratorMode(self::IT_MODE_LIFO | self::IT_MODE_KEEP);
     }
 
     function __get($name) {

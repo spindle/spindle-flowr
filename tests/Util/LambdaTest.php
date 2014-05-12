@@ -36,4 +36,25 @@ class Util_LambdaTest extends TestCase
 
         self::assertEquals(array('<b>','<a>','</a>','</b>'), $world);
     }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    function notCallable()
+    {
+        $op = new Flowr\AnyOperation(
+            function(){},
+            function(){}
+        );
+
+        $tx = new Flowr\Transaction;
+
+        $nested = Flowr\Util\Lambda::nest(
+            array('not callable'),
+            $tx,
+            new Flowr\Util\OperationInvoker($op, 'commit')
+        );
+        $nested($tx);
+    }
 }
