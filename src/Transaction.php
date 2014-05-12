@@ -23,7 +23,7 @@ class Transaction extends Operation implements
         $this->operations = new Util\OperationStorage;
     }
 
-    function commit(self $tx=null)
+    function commit(Transaction $tx=null)
     {
         $ops = $this->operations;
         foreach ($ops as $key => $op) {
@@ -47,7 +47,7 @@ class Transaction extends Operation implements
         }
     }
 
-    function rollback(self $tx=null)
+    function rollback(Transaction $tx=null)
     {
         $fatal = null;
         $ops = $this->operations;
@@ -145,7 +145,7 @@ class Transaction extends Operation implements
         unset($this->operations[$offset]);
     }
 
-    function __invoke(self $tx=null) {
+    function __invoke(Transaction $tx=null) {
         return $this->commit($tx);
     }
 
