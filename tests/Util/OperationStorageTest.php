@@ -83,4 +83,29 @@ class Util_OperationStorageTest extends TestCase
         }
         self::assertEquals(array(0,1,2,3,4,5,6,7,8,9), $iterates);
     }
+
+    /**
+     * @test
+     */
+    function aspects()
+    {
+        $s = $this->target;
+
+        self::assertInstanceOf('Spindle\Flowr\Util\AdviceStorage', $s->commit);
+        self::assertInstanceOf('Spindle\Flowr\Util\AdviceStorage', $s->rollback);
+        self::assertInstanceOf('Spindle\Flowr\Util\AdviceStorage', $s->COMMIT);
+        self::assertInstanceOf('Spindle\Flowr\Util\AdviceStorage', $s->ROLLBACK);
+
+    }
+
+    /**
+     * @test
+     * @expectedException \OutOfRangeException
+     */
+    function aspects2()
+    {
+        $s = $this->target;
+
+        self::assertInstanceOf('Spindle\Flowr\Util\AdviceStorage', $s->uso800);
+    }
 }

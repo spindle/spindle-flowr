@@ -26,6 +26,10 @@ class Transaction extends Operation implements
     function commit(Transaction $tx=null)
     {
         $ops = $this->operations;
+        $this->history = array();
+        $ops->setRewind(true);
+        $ops->setForward();
+
         foreach ($ops as $key => $op) {
             $interceptors = $this->extractInterceptors($op, __FUNCTION__);
             if ($interceptors) {
@@ -69,9 +73,7 @@ class Transaction extends Operation implements
 
     private function extractInterceptors(Operation $op, $type)
     {
-        if ($type !== 'commit' && $type !== 'rollback') {
-            throw new \InvalidArgumentException('$type must be "commit" or "rollback".');
-        }
+        assert($type === 'commit' || $type === 'rollback');
         //op->COMMIT
         //tx->operations->COMMIT
         //op->commit
