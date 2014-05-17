@@ -6,7 +6,6 @@
 namespace Spindle\Flowr;
 
 /**
- *
  * @property string $label
  * @property string $type    'commit' or 'rollback'
  * @property string $class
@@ -18,6 +17,12 @@ final class History {
     private $class;
     private $result;
 
+    /**
+     * @param string|int $label
+     * @param string $type
+     * @param string $class
+     * @param mixed  $result
+     */
     function __construct($label, $type, $class, $result)
     {
         if (is_string($label) || is_int($label)) {

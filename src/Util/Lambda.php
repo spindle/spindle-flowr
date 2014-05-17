@@ -4,8 +4,6 @@
  */
 namespace Spindle\Flowr\Util;
 
-use Spindle\Flowr\Transaction;
-
 class Lambda {
     static function nest(array $funcs, OperationInvoker $origin)
     {
