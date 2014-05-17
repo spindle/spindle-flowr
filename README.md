@@ -2,6 +2,8 @@ spindle/flowr
 ============
 
 [![Build Status](https://travis-ci.org/spindle/spindle-flowr.svg?branch=master)](https://travis-ci.org/spindle/spindle-flowr)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spindle/spindle-flowr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spindle/spindle-flowr/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/spindle/spindle-flowr/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/spindle/spindle-flowr/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/spindle/flowr/v/stable.png)](https://packagist.org/packages/spindle/flowr)
 [![Total Downloads](https://poser.pugx.org/spindle/flowr/downloads.png)](https://packagist.org/packages/spindle/flowr)
 [![Latest Unstable Version](https://poser.pugx.org/spindle/flowr/v/unstable.png)](https://packagist.org/packages/spindle/flowr)

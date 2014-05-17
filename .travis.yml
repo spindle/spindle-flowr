@@ -5,7 +5,7 @@ php:
     - 5.3
 
 install:
-    - composer install
+    - composer install --no-dev
 
 after_script:
     - wget https://scrutinizer-ci.com/ocular.phar
