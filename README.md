@@ -1,6 +1,12 @@
 spindle/flowr
 ============
 
+[![Build Status](https://travis-ci.org/spindle/spindle-flowr.svg?branch=master)](https://travis-ci.org/spindle/spindle-flowr)
+[![Latest Stable Version](https://poser.pugx.org/spindle/flowr/v/stable.png)](https://packagist.org/packages/spindle/flowr)
+[![Total Downloads](https://poser.pugx.org/spindle/flowr/downloads.png)](https://packagist.org/packages/spindle/flowr)
+[![Latest Unstable Version](https://poser.pugx.org/spindle/flowr/v/unstable.png)](https://packagist.org/packages/spindle/flowr)
+[![License](https://poser.pugx.org/spindle/flowr/license.png)](https://packagist.org/packages/spindle/flowr)
+
 フローコントロールライブラリ。
 AOP(アスペクト指向)の機能を備えます。
 
