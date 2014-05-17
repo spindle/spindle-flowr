@@ -18,13 +18,11 @@ class Transaction extends Operation implements
     private $store = array();
     private $history = array();
 
-    function __construct()
-    {
-        $this->operations = new Util\OperationStorage;
-    }
-
     function commit(Transaction $tx=null)
     {
+        if ($this->operations === null) {
+            $this->operations = new Util\OperationStorage;
+        }
         $ops = $this->operations;
         $this->history = array();
         $ops->setRewind(true);
@@ -69,6 +67,7 @@ class Transaction extends Operation implements
                 $fatal = $result;
             }
         }
+        return $fatal;
     }
 
     private function extractInterceptors(Operation $op, $type)
@@ -136,6 +135,9 @@ class Transaction extends Operation implements
     function offsetSet($offset, $value)
     {
         if ($value instanceof Operation) {
+            if ($this->operations === null) {
+                $this->operations = new Util\OperationStorage;
+            }
             $this->operations[$offset] = $value;
         } else {
             throw new \InvalidArgumentException('Value must be a instance of Operation.');

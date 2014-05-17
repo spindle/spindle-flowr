@@ -5,7 +5,7 @@ use Spindle\Flowr;
 
 class TransactionTest extends TestCase
 {
-    private $tx, $op1, $op2, $world;
+    private $tx, $op1, $op2, $op3, $world;
 
     function setup()
     {
@@ -20,6 +20,11 @@ class TransactionTest extends TestCase
             function() use(&$world){ $world[] = 'commitNG'; return 'ng'; },
             function() use(&$world){ $world[] = 'rollbackNG'; return 'ng'; }
         );
+
+        $this->op3 = new Flowr\AnyOperation(
+            function() use(&$world){ $world[] = 'commit'; },
+            function() use(&$world){ $world[] = 'rollbackNG'; return 'ng'; }
+        );
     }
 
     /**
@@ -30,11 +35,24 @@ class TransactionTest extends TestCase
     {
         extract(get_object_vars($this));
 
+        self::assertInstanceOf('Spindle\Flowr\Util\OperationStorage', $tx->operations);
+
         $tx[] = $op1;
         $tx[] = $op1;
         $tx();
 
         self::assertEquals(array('commit','commit'), (array)$world);
+    }
+
+    /**
+     * Txに何も登録されていない状態でのトランザクション実行
+     * @test
+     */
+    function commitImmediate()
+    {
+        extract(get_object_vars($this));
+
+        self::assertNull($tx());
     }
 
     /**
@@ -82,10 +100,90 @@ class TransactionTest extends TestCase
     /**
      * @test
      */
+    function rollbackError()
+    {
+        extract(get_object_vars($this));
+
+        $tx[] = $op1;
+        $tx[] = $op3;
+        $tx[] = $op2;
+        $tx();
+        self::assertEquals(
+            array('commit', 'commit', 'commitNG', 'rollbackNG', 'rollback'),
+            (array)$world
+        );
+    }
+
+    /**
+     * commitに対してAOPを織り込む例
+     * @test
+     */
     function aspect1()
     {
         extract(get_object_vars($this));
 
+        $tx[] = $op1;
+        $tx[] = $op2;
+        $arr = array();
+
+        $op1->COMMIT[] = function($next, $tx=null) use(&$arr) {
+            $arr[] = 3;
+            return $next($tx);
+        };
+
+        $tx->operations->COMMIT[] = function($next, $tx=null) use(&$arr){
+            $arr[] = 2;
+            return $next($tx);
+        };
+
+        $op1->commit[] = function($next, $tx=null) use(&$arr) {
+            $arr[] = 1;
+            return $next($tx);
+        };
+
+        $tx->operations->commit[] = function($next, $tx=null) use(&$arr){
+            $arr[] = 0;
+            return $next($tx);
+        };
+
+        $tx();
+        self::assertEquals(array(0,1,2,3,0,2), $arr);
+    }
+
+    /**
+     * rollbackに対してAOPを織り込む例
+     * @test
+     */
+    function aspect2()
+    {
+        extract(get_object_vars($this));
+
+        $tx[] = $op1;
+        $tx[] = $op2;
+        $arr = array();
+
+        $op1->ROLLBACK[] = function($next, $tx=null) use(&$arr) {
+            $arr[] = 3;
+            return $next($tx);
+        };
+
+        $tx->operations->ROLLBACK[] = function($next, $tx=null) use(&$arr){
+            $arr[] = 2;
+            return $next($tx);
+        };
+
+        $op1->rollback[] = function($next, $tx=null) use(&$arr) {
+            $arr[] = 1;
+            return $next($tx);
+        };
+
+        $tx->operations->rollback[] = function($next, $tx=null) use(&$arr){
+            $arr[] = 0;
+            return $next($tx);
+        };
+
+        $tx();
+        self::assertEquals(array(0,1,2,3), $arr);
     }
 
     /**

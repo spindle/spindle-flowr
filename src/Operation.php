@@ -19,6 +19,9 @@ abstract class Operation
                 return $this->$name;
             case 'operations':
                 if ($this instanceof Transaction) {
+                    if ($this->$name === null) {
+                        $this->$name = new Util\OperationStorage;
+                    }
                     return $this->$name;
                 }
                 // through
