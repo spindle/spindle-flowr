@@ -5,6 +5,13 @@
  */
 namespace Spindle\Flowr;
 
+/**
+ *
+ * @property string $label
+ * @property string $type    'commit' or 'rollback'
+ * @property string $class
+ * @property mixed  $result
+ */
 final class History {
     private $label;
     private $type;
@@ -42,6 +49,6 @@ final class History {
     }
 
     function __set($name, $value) {
-        throw new \OutOfRangeException('Flowr\History->__set() is not allowed.');
+        throw new \OutOfRangeException("Spindle\\Flowr\\History->__set($name, $value) is not allowed.");
     }
 }

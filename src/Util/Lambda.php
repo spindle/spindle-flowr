@@ -7,7 +7,7 @@ namespace Spindle\Flowr\Util;
 use Spindle\Flowr\Transaction;
 
 class Lambda {
-    static function nest(array $funcs, Transaction $tx, OperationInvoker $origin)
+    static function nest(array $funcs, OperationInvoker $origin)
     {
         static $oldPHP;
         if ($oldPHP === null) $oldPHP = version_compare(\PHP_VERSION, '5.4.0', '>=');

@@ -31,7 +31,7 @@ class Transaction extends Operation implements
         foreach ($ops as $key => $op) {
             $interceptors = $this->extractInterceptors($op, __FUNCTION__);
             if ($interceptors) {
-                $fn = Util\Lambda::nest($interceptors, $this, new Util\OperationInvoker($op, __FUNCTION__));
+                $fn = Util\Lambda::nest($interceptors, new Util\OperationInvoker($op, __FUNCTION__));
             } else {
                 $fn = new Util\OperationInvoker($op, __FUNCTION__);
             }
@@ -57,7 +57,7 @@ class Transaction extends Operation implements
         foreach ($ops as $key => $op) {
             $interceptors = $this->extractInterceptors($op, __FUNCTION__);
             if ($interceptors) {
-                $fn = Util\Lambda::nest($interceptors, $this, new Util\OperationInvoker($op, __FUNCTION__));
+                $fn = Util\Lambda::nest($interceptors, new Util\OperationInvoker($op, __FUNCTION__));
             } else {
                 $fn = new Util\OperationInvoker($op, __FUNCTION__);
             }

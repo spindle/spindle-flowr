@@ -29,7 +29,6 @@ class Util_LambdaTest extends TestCase
         $tx = new Flowr\Transaction;
         $nested = Flowr\Util\Lambda::nest(
             array($a, $b),
-            $tx,
             new Flowr\Util\OperationInvoker($op, 'commit')
         );
         $nested($tx);
@@ -52,7 +51,6 @@ class Util_LambdaTest extends TestCase
 
         $nested = Flowr\Util\Lambda::nest(
             array('not callable'),
-            $tx,
             new Flowr\Util\OperationInvoker($op, 'commit')
         );
         $nested($tx);
