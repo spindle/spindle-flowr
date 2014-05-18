@@ -39,4 +39,5 @@ module.exports = (grunt) ->
     require('load-grunt-tasks')(grunt)
 
     grunt.registerTask 'default', ['connect', 'watch']
+    grunt.registerTask 'test', ['shell:phpunit']
     grunt.registerTask 'all', ['shell']
