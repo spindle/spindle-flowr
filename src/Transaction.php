@@ -35,9 +35,9 @@ class Transaction extends Operation implements
             } else {
                 $fn = new Util\OperationInvoker($op, __FUNCTION__);
             }
-            $result = $fn($this);
-            $this->addHistory(new History($key, __FUNCTION__, get_class($op), $result));
-            if ($result !== null) {
+            try {
+                $result = $fn($this);
+            } catch (\Exception $result) {
                 $ops->setBack();
                 $ops->setRewind(false);
                 if ($this->autoRollback) {
@@ -46,6 +46,7 @@ class Transaction extends Operation implements
                     return $result;
                 }
             }
+            $this->addHistory(new History($key, __FUNCTION__, get_class($op), $result));
         }
     }
 
@@ -61,11 +62,12 @@ class Transaction extends Operation implements
             } else {
                 $fn = new Util\OperationInvoker($op, __FUNCTION__);
             }
-            $result = $fn($this);
-            $this->addHistory(new History($key, __FUNCTION__, get_class($op), $result));
-            if ($result !== null) {
+            try {
+                $result = $fn($this);
+            } catch (\Exception $result) {
                 $fatal = $result;
             }
+            $this->addHistory(new History($key, __FUNCTION__, get_class($op), $result));
         }
         return $fatal;
     }

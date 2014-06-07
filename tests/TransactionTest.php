@@ -17,13 +17,13 @@ class TransactionTest extends TestCase
         );
 
         $this->op2 = new Flowr\AnyOperation(
-            function() use(&$world){ $world[] = 'commitNG'; return 'ng'; },
-            function() use(&$world){ $world[] = 'rollbackNG'; return 'ng'; }
+            function() use(&$world){ $world[] = 'commitNG'; throw new \Exception('ng'); },
+            function() use(&$world){ $world[] = 'rollbackNG'; throw new \Exception('ng'); }
         );
 
         $this->op3 = new Flowr\AnyOperation(
             function() use(&$world){ $world[] = 'commit'; },
-            function() use(&$world){ $world[] = 'rollbackNG'; return 'ng'; }
+            function() use(&$world){ $world[] = 'rollbackNG'; throw new \Exception('ng'); }
         );
     }
 
