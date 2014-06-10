@@ -3,7 +3,7 @@ namespace Spindle\Flowr\Tests;
 
 use Spindle\Flowr;
 
-class HistoryTest extends TestCase
+class HistoryTest extends \PHPUnit_Framework_TestCase
 {
     function setup() {
         $this->setExpectedException('\InvalidArgumentException');

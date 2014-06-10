@@ -3,7 +3,7 @@ namespace Spindle\Flowr\Tests;
 
 use Spindle\Flowr;
 
-class Util_OperationInvokerTest extends TestCase
+class Util_OperationInvokerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test

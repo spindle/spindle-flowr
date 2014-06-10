@@ -3,7 +3,7 @@ namespace Spindle\Flowr\Tests;
 
 use Spindle\Flowr;
 
-class Util_LambdaTest extends TestCase
+class Util_LambdaTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test

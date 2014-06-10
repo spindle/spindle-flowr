@@ -14,7 +14,7 @@ class HogeOperationMock extends Flowr\Operation
     }
 }
 
-class Util_OperationStorageTest extends TestCase
+class Util_OperationStorageTest extends \PHPUnit_Framework_TestCase
 {
     private $target;
 

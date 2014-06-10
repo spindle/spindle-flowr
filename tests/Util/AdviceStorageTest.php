@@ -3,7 +3,7 @@ namespace Spindle\Flowr\Tests;
 
 use Spindle\Flowr;
 
-class Util_AdviceStorageTest extends TestCase
+class Util_AdviceStorageTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test

@@ -26,7 +26,7 @@ class OperationMock extends Flowr\Operation
     }
 }
 
-class OperationTest extends TestCase
+class OperationTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test

@@ -3,7 +3,7 @@ namespace Spindle\Flowr\Tests;
 
 use Spindle\Flowr;
 
-class TransactionTest extends TestCase
+class TransactionTest extends \PHPUnit_Framework_TestCase
 {
     private $tx, $op1, $op2, $op3, $world;
 

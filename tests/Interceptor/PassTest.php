@@ -3,7 +3,7 @@ namespace Spindle\Flowr\Tests;
 
 use Spindle\Flowr;
 
-class Interceptor_PassTest extends TestCase
+class Interceptor_PassTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test

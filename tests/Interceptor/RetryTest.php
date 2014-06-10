@@ -3,7 +3,7 @@ namespace Spindle\Flowr\Tests;
 
 use Spindle\Flowr\Interceptor\Retry;
 
-class Interceptor_RetryTest extends TestCase
+class Interceptor_RetryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
