@@ -20,5 +20,17 @@
     }
     ,"autoload": {
         "psr-4": {"Spindle\\Flowr\\": "src/"}
+    },
+    "archive": {
+        "exclude": [
+            "tests/",
+            "builds/",
+            "node_modules/",
+            "gulpfile.js",
+            "apigen.neon",
+            "phpunit.xml.dist",
+            "phpunit.xml",
+            "package.json"
+        ]
     }
 }
